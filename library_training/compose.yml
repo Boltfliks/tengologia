@@ -1,0 +1,24 @@
+networks:
+  jedi:
+
+services:
+  app:
+    container_name: library-training-2b-sit-app
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 9000:9000
+    networks:
+      - jedi
+  db:
+    container_name: library-training-2b-sit-db
+    image: postgres:latest
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_PASSWORD: R2D2c3p0
+      POSTGRES_USER: padawan
+      POSTGRES_DB: library
+    networks:
+      - jedi
